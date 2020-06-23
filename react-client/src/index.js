@@ -1,23 +1,20 @@
+import { createStore } from "redux";
+
 const addBtn = document.getElementById("add");
 const number = document.getElementById("number");
 const minusBtn = document.getElementById("minus");
 
-let count = 0;
+// Reducer is a function that modifies the data
+// Whatever the reducer returns, it is going to be the data
+const reducerExample = () => {};
 
-function updateText () {
-  number.innerText = count;
-}
+// By setting a default value, we can initialize state's value
+const countModifier = (count = 0, action) => {
+  console.log(count, action)
+  return count;
+};
 
-function handleAdd(){
-  count++;
-  updateText();
-}
 
-function handleMinus(){
-  count--;
-  updateText();
-}
+const countStore = createStore(countModifier);
 
-addBtn.addEventListener("click", handleAdd);
-minusBtn.addEventListener("click", handleMinus);
-
+console.log(countStore.getState());
