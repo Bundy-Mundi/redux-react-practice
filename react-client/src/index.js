@@ -4,17 +4,24 @@ const addBtn = document.getElementById("add");
 const number = document.getElementById("number");
 const minusBtn = document.getElementById("minus");
 
-// Reducer is a function that modifies the data
-// Whatever the reducer returns, it is going to be the data
-const reducerExample = () => {};
-
-// By setting a default value, we can initialize state's value
 const countModifier = (count = 0, action) => {
-  console.log(count, action)
-  return count;
+  if(action.type === "Add"){
+    return count + 1
+  }
+  else if(action.type === "Minus"){
+    return count - 1
+  }
+  else if(action.type === "Test"){
+    return "test"
+  }
 };
 
-
 const countStore = createStore(countModifier);
+
+countStore.dispatch({ type:"Add" });
+
+countStore.dispatch({ type:"Add" });
+
+countStore.dispatch({ type:"Add" });
 
 console.log(countStore.getState());
